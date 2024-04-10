@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="WordProject">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Project/WordProject.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
