@@ -1,27 +1,28 @@
 import java.util.Dictionary;
 import java.util.Hashtable;
-public class Room {
-    private String rmName;
-    private String rmDesc;
+import java.util.Objects;
 
-    private Player myPlr;
-    private Dictionary<String, Object> rmObjects;
-    private Dictionary<String, Room> directions;
+public class Room {
+    private String Name;
+    private String Desc;
+
+    private Player Me;
+    private Dictionary<String, Object> Items;
+    private Dictionary<String, Room> Directions;
+
+
+
     public Room(String name, String desc) {
-        rmName = name;
-        rmDesc = desc;
+        Name = name;
+        Desc = desc;
 
     }
 
-    public void setPlayer(Player plr) {
-        this.myPlr = plr;
+    public void setPlayer(Player player) {
+        Me = player;
     }
 
     public void setObjects(Dictionary<String, Object> objects) {
-        rmObjects = objects;
-    }
-
-    public void setDirections(Dictionary<String, Room> direct){
-        directions = direct;
+        Items = objects;
     }
 }
