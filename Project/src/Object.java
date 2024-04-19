@@ -22,4 +22,8 @@ public class Object {
 
     public Object (String name, String desc) {
     }
+    
+    public String getName(){
+        return Name;    
+    }
 }

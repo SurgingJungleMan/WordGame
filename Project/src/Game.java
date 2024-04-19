@@ -3,7 +3,7 @@ import java.util.*;
 public class Game
 {
     // static dictionary to hold all of the rooms
-    static Dictionary<String, Room> Rooms= new Hashtable<>();
+    static Map<String, Room> Rooms= new Hashtable<>();
 
 
     
@@ -36,23 +36,36 @@ public class Game
         Bedroom.setPlayer(player);
 
         // objects //
+        Map<String, Object> BedroomObjects = new HashMap<String, Object>();
+
         Object Closet = new Object("Closet", "");
-        Closet.interactions.put("Pick Up", (s,l) -> {
+        Closet.interactions.put("carry", (s,l) -> {
            System.out.println("Why would you think we can pick this up.");
         });
         Closet.interactions.put("go", (s,l) -> {
                    System.out.println("Why would you think we can pick this up.");
-                });
+        });
 
-        Closet.interactions.put("Open", (s,l) -> {
-            System.out.println("Inside this closet is a");
+        Closet.interactions.put("open", (s,l) -> {
+            System.out.println("Inside this closet is a knife!");
+
+            // set up the found knife // lmaooo!
+            Object Knife = new Object("Knife", "A simple knife.");
+            Knife.interactions.put("get", (a, b) -> {
+
+                player.insertInventory(Knife);
+                System.out.println("Added to inventory.");
+
+            });
+
+            // hahaahahahaha
+            BedroomObjects.put("knife", Knife);
         });
 
         //Closet.interactions.get("Pick Up").accept("Hello!", "Bye bye!");
 
         //
-        Map<String, Object> BedroomObjects = new HashMap<String, Object>();
-        BedroomObjects.put("Closet", Closet);
+        BedroomObjects.put("closet", Closet);
         Bedroom.setObjects(BedroomObjects);
         
         Bedroom.promptPlayer();

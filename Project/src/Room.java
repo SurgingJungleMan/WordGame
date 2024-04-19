@@ -1,59 +1,13 @@
 import javax.swing.*;
 import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.BiConsumer;
 
 
 public class Room {
 
-    private static class promptHandler{
 
-        public ArrayList<String> sortWords(String a, Map<String, Object> items){
-            ArrayList<String> wordArrayList = new ArrayList<String>();
-
-            Object item = null;
-            
-            // loop through what hte player said
-            for(String word : a.split(" ")) {
-                
-                // loop through all the times
-                for (Map.Entry<String, Object> object : items.entrySet()) {
-
-                    // if the items name equals a word inside the sentence, store it
-                    String name = object.getKey();
-                    Object CurrentItem = object.getValue();
-                    
-                    if (name.equals(word)){
-                        item = CurrentItem;
-                        wordArrayList.add(word);
-                    }
-
-                }
-                
-            }
-
-            // loop through words again
-            for(String word : a.split(" ")) {
-                if (item != null){ // if we have an item
-                    for (Map.Entry<String, BiConsumer<String, String>> method : item.interactions.entrySet()) {
-                        // going to cry
-                        String actionName = method.getKey();
-
-
-                        if (actionName.equals(word)){
-                            wordArrayList.add(word);
-                        }
-
-                    }
-                }
-            }
-            
-
-            
-            return wordArrayList;
-        }
-
-    }
 
 
     private static Scanner Sc = new Scanner(System.in);
@@ -64,10 +18,18 @@ public class Room {
     private Map<String, Object> Items;
     private Map<String, Room> Directions;
     
-    private promptHandler prompting = new promptHandler();
+    private Prompts prompting = new Prompts();
 
     private void checkPrompt(String a){
         ArrayList<String> results = prompting.sortWords(a, this.Items);
+        BiConsumer<String, String> method = prompting.findAction(results, this.Items);
+        if (method == null){
+            System.out.println("Action not found!");
+            return;
+        }
+        method.accept("A", "A");
+        // reprompt
+        promptPlayer();
     }
 
     public void promptPlayer(){
