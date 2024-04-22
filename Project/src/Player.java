@@ -13,5 +13,10 @@ public class Player {
     public void insertInventory(Object item){
         Inventory.put(item.getName(), item);
     }
-    
+
+    public void viewInventory(){
+        for (Map.Entry<String,Object> entry : Inventory.entrySet()){
+            System.out.println(entry.getKey());
+        }
+    }
 }

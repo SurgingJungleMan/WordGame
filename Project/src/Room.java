@@ -7,12 +7,10 @@ import java.util.function.BiConsumer;
 
 public class Room {
 
-
-
-
     private static Scanner Sc = new Scanner(System.in);
     private String Name;
     private String Desc;
+
 
     private Player player;
     private Map<String, Object> Items;
@@ -24,7 +22,21 @@ public class Room {
         ArrayList<String> results = prompting.sortWords(a, this.Items);
         BiConsumer<String, String> method = prompting.findAction(results, this.Items);
         if (method == null){
-            System.out.println("Action not found!");
+
+
+
+            boolean worked = prompting.checkRelationInventory(a, this.player);
+            if (!worked){
+                System.out.println();
+                System.out.println("If you said a two word action like pick up, I suggest you saying get!");
+                System.out.println("Nothing found sorry gng, no action found -- for the literate");
+            }
+
+
+
+
+
+
             return;
         }
         method.accept("A", "A");
@@ -46,7 +58,6 @@ public class Room {
     public Room(String name, String desc) {
         Name = name;
         Desc = desc;
-
     }
 
     public void setPlayer(Player player) {

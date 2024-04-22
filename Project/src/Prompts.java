@@ -1,9 +1,43 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class Prompts{
-    
+
+
+    public boolean checkRelationInventory(String a, Player plr){
+        // check if we mention the inventory at all...
+
+        List<String> words = Arrays.asList(a.split(" "));
+
+
+        boolean found = words.contains("Inv")|| words.contains("Inventory") || words.contains("inventory") || words.contains("inv");
+        if(found){
+
+            // if we find remove then remove obviously!
+
+            boolean remove = words.contains("remove")|| words.contains("Remove")|| words.contains("drop");
+
+            if (remove){
+
+                //
+                System.out.println("Player plans to remove stuff from their inventory, im working on this right now gng....");
+                return true;
+            }
+
+            boolean view = words.contains("open")|| words.contains("look") || words.contains("view") || words.contains("Open");
+
+
+
+
+            return true;
+
+        }
+
+        return false;
+    }
 
     public BiConsumer<String, String> findAction(ArrayList<String> words, Map<String, Object> items){
         for (String word : words){
@@ -21,12 +55,8 @@ public class Prompts{
 
                 }
             }
-
-
-
         }
-        
-        System.out.println("If you said a two word action like pick up, I suggest you saying get!");
+
         return null;
     }
 
