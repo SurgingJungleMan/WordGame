@@ -4,13 +4,14 @@ import java.util.Map;
 
 public class Player {
 
-    private Map<String, Object> Inventory= new Hashtable<>();
+    private Map<String, Object> Inventory = new Hashtable<>();
     
     public Player(){
         
     }
 
     public void insertInventory(Object item){
+        System.out.println(item.getName());
         Inventory.put(item.getName(), item);
     }
 

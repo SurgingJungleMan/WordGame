@@ -9,7 +9,7 @@ public class Object {
     */
 
     //
-    public Map<String, BiConsumer<String, String>> interactions = new HashMap<>();
+    public Map<String, BiConsumer<Object, Player>> interactions = new HashMap<>();
 
 
     private String Name;

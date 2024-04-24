@@ -51,9 +51,10 @@ public class Game
 
             // set up the found knife // lmaooo!
             Object Knife = new Object("Knife", "A simple knife.");
-            Knife.interactions.put("get", (a, b) -> {
+            Knife.interactions.put("get", (plr, object) -> {
 
-                player.insertInventory(Knife);
+
+                //plr.insertInventory(object);
                 System.out.println("Added to inventory.");
 
             });

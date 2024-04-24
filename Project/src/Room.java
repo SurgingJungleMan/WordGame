@@ -20,28 +20,27 @@ public class Room {
 
     private void checkPrompt(String a){
         ArrayList<String> results = prompting.sortWords(a, this.Items);
-        BiConsumer<String, String> method = prompting.findAction(results, this.Items);
+        Object foundItem = prompting.findItem(results, this.Items);
+        BiConsumer<Object, Player> method = prompting.findAction(results, this.Items);
+
+
         if (method == null){
 
 
 
-            boolean worked = prompting.checkRelationInventory(a, this.player);
-            if (!worked){
-                System.out.println();
-                System.out.println("If you said a two word action like pick up, I suggest you saying get!");
-                System.out.println("Nothing found sorry gng, no action found -- for the literate");
-            }
+            BiConsumer<Player, Room> worked = prompting.checkRelationInventory(a, this.player);
+            worked.accept(this.player, this);
 
 
+        }else{
 
 
+            method.accept(foundItem, this.player);
+            // reprompt
+            promptPlayer();
 
-
-            return;
         }
-        method.accept("A", "A");
-        // reprompt
-        promptPlayer();
+
     }
 
     public void promptPlayer(){
@@ -66,5 +65,9 @@ public class Room {
 
     public void setObjects(Map<String, Object> objects) {
         Items = objects;
+    }
+
+    public Map<String, Object> getObjects(){
+        return Items;
     }
 }
