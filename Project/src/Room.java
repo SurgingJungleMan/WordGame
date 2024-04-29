@@ -26,12 +26,7 @@ public class Room {
 
         if (method == null){
 
-
-
-            BiConsumer<Player, Room> worked = prompting.checkRelationInventory(a, this.player);
-            worked.accept(this.player, this);
-
-
+            System.out.println("ACTION NOT FOUND!");
         }else{
 
 

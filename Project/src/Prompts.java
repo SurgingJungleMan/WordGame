@@ -6,6 +6,7 @@ import java.util.function.BiConsumer;
 
 public class Prompts{
 
+    /*
     public BiConsumer<Player, Room> checkRelationInventory(String a, Player plr){
         // check if we mention the inventory at all...
 
@@ -16,7 +17,7 @@ public class Prompts{
         if(found){
 
             // if we find remove then remove obviously!
-
+            // actually im not sure if this is needed in the thing? but I know
             boolean remove = words.contains("remove")|| words.contains("Remove")|| words.contains("drop");
             if (remove){
 
@@ -49,6 +50,8 @@ public class Prompts{
 
         return (player, s) ->{};
     }
+     */
+
 
     public Object findItem(ArrayList<String> words, Map<String, Object> items){
         for (String word : words){

@@ -13,7 +13,8 @@ public class Object {
 
 
     private String Name;
-    private Room Room;
+    private Room room;
+    private Player owner;
 
     private String Desc;
 
@@ -21,6 +22,13 @@ public class Object {
 
 
     public Object (String name, String desc) {
+
+        //
+        interactions.put("drop", (player, obj) -> {
+            // we have to drop this bruh
+            // this is gonna be hard
+        });
+
     }
     
     public String getName(){
